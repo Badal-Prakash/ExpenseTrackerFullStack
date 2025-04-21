@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="sidebar">
+    <h3>Category List</h3>
+    <ul>
+      <li *ngFor="let category of categories">{{ category.name }}</li>
+    </ul>
+  </div>
+
+  <div class="form-container">
+    <h2>Create Category</h2>
+
+    <form [formGroup]="categoryForm" (ngSubmit)="submitForm()">
+      <label for="name">Category Name:</label>
+      <input id="name" type="text" formControlName="name" required />
+      <div
+        *ngIf="
+          categoryForm.get('name')?.invalid && categoryForm.get('name')?.touched
+        "
+        class="error"
+      >
+        Name is required.
+      </div>
+
+      <button type="submit" [disabled]="categoryForm.invalid">Create</button>
+    </form>
+
+    <p class="success" *ngIf="successMessage()">{{ successMessage() }}</p>
+    <p class="error" *ngIf="errorMessage()">{{ errorMessage() }}</p>
+  </div>
+</div>

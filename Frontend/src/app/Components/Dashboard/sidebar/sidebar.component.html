@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-heading">Expense Tracker</div>
+    <nav class="nav-links">
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/expenses">Expenses</a>
+      <a routerLink="/categories">Categories</a>
+      <a routerLink="/settings">Settings</a>
+      <a routerLink="/profile">Profile</a>
+      <button *ngIf="isLoggedIn" (click)="onLogout()">Logout</button>
+    </nav>
+  </div>
+
+  <!-- Page Content -->
+  <div class="page-content">
+    <div class="navbar">
+      <span class="welcome-text">Welcome, {{ userName }}</span>
+    </div>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

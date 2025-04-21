@@ -1,0 +1,33 @@
+<div class="profile-container" *ngIf="profileForm">
+  <h2>Edit Profile</h2>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <label>Name:</label>
+    <input type="text" formControlName="name" />
+    <div
+      *ngIf="
+        profileForm.get('name')?.invalid && profileForm.get('name')?.touched
+      "
+    >
+      Name is required
+    </div>
+
+    <label>Email:</label>
+    <input type="email" formControlName="email" />
+    <div
+      *ngIf="
+        profileForm.get('email')?.invalid && profileForm.get('email')?.touched
+      "
+    >
+      Enter a valid email
+    </div>
+
+    <label>Phone Number:</label>
+    <input type="text" formControlName="phoneNumber" />
+
+    <button type="submit" [disabled]="profileForm.invalid">Update</button>
+  </form>
+
+  <p class="success" *ngIf="successMsg">{{ successMsg }}</p>
+  <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+</div>

@@ -1,0 +1,37 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn btn-primary" (click)="onAddExpense()">
+      Add Expense
+    </button>
+  </div>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col" *ngFor="let item of expense">
+      <div class="card h-100 shadow-sm border-primary">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">{{ item.title }}</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text">
+            <strong>Amount:</strong> ₹{{ item.amount }} <br />
+            <strong>Category:</strong> {{ item.category }} <br />
+            <strong>Date:</strong> {{ item.date | date : "mediumDate" }}
+          </p>
+        </div>
+        <div class="card-footer text-end">
+          <button
+            class="btn btn-sm btn-outline-danger me-2"
+            (click)="onDelete(item.id)"
+          >
+            Delete
+          </button>
+          <button
+            class="btn btn-sm btn-outline-secondary"
+            (click)="onEdit(item.id)"
+          >
+            Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h3 class="mb-4">
+    {{ this.expenseForm.get("id")?.value ? "Update Expense" : "Add Expense" }}
+  </h3>
+
+  <form
+    [formGroup]="expenseForm"
+    (ngSubmit)="expenseForm.get('id')?.value ? onUpdate() : onSubmit()"
+  >
+    <div class="mb-3">
+      <label class="form-label">Title</label>
+      <input type="text" formControlName="title" class="form-control" />
+      <div *ngIf="submitted && f['title'].errors" class="text-danger">
+        Title is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Amount</label>
+      <input type="number" formControlName="amount" class="form-control" />
+      <div *ngIf="submitted && f['amount'].errors" class="text-danger">
+        Valid amount required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Category</label>
+      <select formControlName="category" class="form-select">
+        <option value="" disabled>Select category</option>
+        <option *ngFor="let category of categories" [value]="category.name">
+          {{ category.name }}
+        </option>
+      </select>
+      <div *ngIf="submitted && f['category'].errors" class="text-danger">
+        Category is required
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Date</label>
+      <input type="date" formControlName="date" class="form-control" />
+      <div *ngIf="submitted && f['date'].errors" class="text-danger">
+        Date is required
+      </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">
+      {{ this.expenseForm.get("id")?.value ? "Update" : "Create" }}
+    </button>
+  </form>
+</div>
